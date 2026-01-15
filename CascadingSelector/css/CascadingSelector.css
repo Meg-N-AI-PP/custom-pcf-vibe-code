@@ -1,0 +1,227 @@
+/* CascadingSelector PCF Control Styles */
+
+.cascading-selector-container {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cascading-selector-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cascading-selector-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #323130;
+  margin-bottom: 8px;
+}
+
+.cascading-selector-description {
+  font-size: 14px;
+  color: #605e5c;
+  margin-bottom: 24px;
+}
+
+.cascading-selector-section {
+  margin-bottom: 24px;
+}
+
+.cascading-selector-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #323130;
+  margin-bottom: 8px;
+}
+
+.cascading-selector-select {
+  width: 100%;
+  height: 44px;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  background: white;
+  color: #323130;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.cascading-selector-select:hover {
+  border-color: #0078d4;
+}
+
+.cascading-selector-select:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+.cascading-selector-select:disabled {
+  background: #f3f2f1;
+  color: #a19f9d;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cascading-selector-arrow {
+  text-align: center;
+  color: #0078d4;
+  margin: 12px 0;
+}
+
+.cascading-selector-separator {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 24px 0;
+}
+
+.cascading-selector-output {
+  margin-top: 24px;
+}
+
+.cascading-selector-output-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cascading-selector-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 120, 212, 0.1);
+  color: #0078d4;
+  border: 1px solid rgba(0, 120, 212, 0.2);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cascading-selector-input-wrapper {
+  position: relative;
+}
+
+.cascading-selector-input {
+  width: 100%;
+  height: 48px;
+  padding: 8px 48px 8px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  background: #faf9f8;
+  color: #323130;
+  cursor: default;
+}
+
+.cascading-selector-copy-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+
+.cascading-selector-copy-button:hover {
+  background: rgba(0, 120, 212, 0.1);
+}
+
+.cascading-selector-helper-text {
+  font-size: 12px;
+  color: #605e5c;
+  margin-top: 8px;
+}
+
+.cascading-selector-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cascading-selector-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  background: white;
+  color: #323130;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cascading-selector-button:hover:not(:disabled) {
+  background: #f3f2f1;
+  border-color: #605e5c;
+}
+
+.cascading-selector-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cascading-selector-button-destructive {
+  background: #a4262c;
+  color: white;
+  border-color: #a4262c;
+}
+
+.cascading-selector-button-destructive:hover:not(:disabled) {
+  background: #8e1f25;
+  border-color: #8e1f25;
+}
+
+.cascading-selector-selections {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(243, 242, 241, 0.3);
+  border: 1px solid rgba(225, 223, 221, 0.3);
+  border-radius: 8px;
+}
+
+.cascading-selector-selections-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #323130;
+  margin-bottom: 12px;
+}
+
+.cascading-selector-selections-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cascading-selector-selection-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid rgba(0, 120, 212, 0.3);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.cascading-selector-selection-badge-prefix {
+  font-size: 11px;
+  color: #605e5c;
+  margin-right: 4px;
+}
+
+.cascading-selector-no-selection {
+  font-size: 14px;
+  color: #605e5c;
+}

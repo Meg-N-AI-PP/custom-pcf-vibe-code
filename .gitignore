@@ -32,3 +32,9 @@ pids
 .devcontainer/
 
 .spark-workbench-id
+
+# PCF Build Artifacts
+CascadingSelector/out/
+CascadingSelector/node_modules/
+CascadingSelector/generated/
+*.pcfproj.user

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="MegNAI" constructor="CascadingSelector" version="1.0.0" display-name-key="CascadingSelector_Display_Key" description-key="CascadingSelector_Desc_Key" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="SelectedValue" display-name-key="SelectedValue_Display_Key" description-key="SelectedValue_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    
+    <!-- resources node identifies any additional resources that the control requires -->
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/CascadingSelector.css" order="1" />
+      <!-- UNCOMMENT TO ADD MORE RESOURCES
+      <resx path="strings/CascadingSelector.1033.resx" version="1.0.0" />
+      -->
+    </resources>
+    
+    <!-- feature-usage node declares the features this control uses -->
+    <feature-usage>
+      <uses-feature name="Utility" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
