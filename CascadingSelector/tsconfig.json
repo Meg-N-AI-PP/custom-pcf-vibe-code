@@ -14,10 +14,12 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "jsx": "react"
   },
   "include": [
     "CascadingSelector/**/*.ts",
+    "CascadingSelector/**/*.tsx",
     "generated/**/*.d.ts"
   ],
   "exclude": [
