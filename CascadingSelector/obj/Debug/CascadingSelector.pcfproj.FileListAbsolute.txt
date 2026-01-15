@@ -1,0 +1,2 @@
+C:\Users\ADMIN\Desktop\My-git\custom vibe PCF\custom-pcf-vibe-code\CascadingSelector\obj\Debug\CascadingSelector.pcfproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\My-git\custom vibe PCF\custom-pcf-vibe-code\CascadingSelector\obj\Debug\CascadingSelector.pcfproj.CoreCompileInputs.cache

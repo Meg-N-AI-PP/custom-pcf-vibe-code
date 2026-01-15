@@ -1,4 +1,152 @@
-import { IInputs, IOutputs } from "./generated/ManifestTypes";
+import { IInputs, IOutputs } from "../generated/ManifestTypes";
+
+// CSS styles embedded as a string for proper styling
+const styles = `
+.cascading-selector-container {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  padding: 20px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+.cascading-selector-card {
+  background: white !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  padding: 24px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  box-sizing: border-box !important;
+}
+.cascading-selector-title {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: #323130 !important;
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+}
+.cascading-selector-description {
+  font-size: 14px !important;
+  color: #605e5c !important;
+  margin-bottom: 24px !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+.cascading-selector-section {
+  margin-bottom: 24px !important;
+  padding: 0 !important;
+}
+.cascading-selector-label {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #323130 !important;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+.cascading-selector-select {
+  width: 100% !important;
+  height: 44px !important;
+  padding: 8px 12px !important;
+  font-size: 15px !important;
+  border: 1px solid #8a8886 !important;
+  border-radius: 4px !important;
+  background: white !important;
+  color: #323130 !important;
+  cursor: pointer !important;
+  transition: border-color 0.2s !important;
+  box-sizing: border-box !important;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+}
+.cascading-selector-select:hover {
+  border-color: #0078d4 !important;
+}
+.cascading-selector-select:focus {
+  outline: none !important;
+  border-color: #0078d4 !important;
+  box-shadow: 0 0 0 1px #0078d4 !important;
+}
+.cascading-selector-select:disabled {
+  background: #f3f2f1 !important;
+  color: #a19f9d !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+.cascading-selector-arrow {
+  text-align: center !important;
+  color: #0078d4 !important;
+  margin: 12px 0 !important;
+  font-size: 18px !important;
+  padding: 0 !important;
+}
+.cascading-selector-output {
+  margin-top: 24px !important;
+  padding: 0 !important;
+}
+.cascading-selector-output-label {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+.cascading-selector-badge {
+  display: inline-block !important;
+  padding: 4px 12px !important;
+  background: rgba(0, 120, 212, 0.1) !important;
+  color: #0078d4 !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+.cascading-selector-output-text {
+  font-size: 15px !important;
+  color: #323130 !important;
+  padding: 12px 16px !important;
+  background: #f3f2f1 !important;
+  border-radius: 4px !important;
+  border-left: 4px solid #0078d4 !important;
+  word-break: break-word !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  width: 100% !important;
+  display: block !important;
+}
+.cascading-selector-button-group {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+.cascading-selector-button {
+  flex: 1 !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  font-weight: 500 !important;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+}
+.cascading-selector-button-primary {
+  background: #0078d4 !important;
+  color: white !important;
+}
+.cascading-selector-button-primary:hover {
+  background: #106ebe !important;
+}
+.cascading-selector-button-danger {
+  background: #da3b01 !important;
+  color: white !important;
+}
+.cascading-selector-button-danger:hover {
+  background: #c12e1f !important;
+}
+`;
 
 interface HierarchyData {
   [key: string]: {
@@ -71,13 +219,27 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
     this._notifyOutputChanged = notifyOutputChanged;
     this._container = container;
 
+    // Inject CSS styles into document head
+    const styleElement = document.createElement("style");
+    styleElement.textContent = styles;
+    document.head.appendChild(styleElement);
+
+    // Also inject styles into container shadow DOM if it exists
+    if (this._container.shadowRoot) {
+      const shadowStyle = document.createElement("style");
+      shadowStyle.textContent = styles;
+      this._container.shadowRoot.appendChild(shadowStyle);
+    }
+
     // Create the main container
     const mainContainer = document.createElement("div");
     mainContainer.className = "cascading-selector-container";
+    mainContainer.style.cssText = "font-family: Segoe UI, system-ui, sans-serif; padding: 20px; max-width: 100%; margin: 0;";
 
     // Create the card
     const card = document.createElement("div");
     card.className = "cascading-selector-card";
+    card.style.cssText = "background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); box-sizing: border-box;";
 
     // Title and description
     const title = document.createElement("h1");
@@ -101,6 +263,7 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
 
     this._level1Select = document.createElement("select");
     this._level1Select.className = "cascading-selector-select";
+    this._level1Select.style.cssText = "width: 100%; height: 44px; padding: 8px 12px; font-size: 15px; border: 1px solid #8a8886; border-radius: 4px; background: white; color: #323130; cursor: pointer; box-sizing: border-box;";
     this._level1Select.innerHTML = '<option value="">Select primary category...</option>';
     Object.keys(hierarchyData).forEach(key => {
       const option = document.createElement("option");
@@ -129,6 +292,7 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
 
     this._level2Select = document.createElement("select");
     this._level2Select.className = "cascading-selector-select";
+    this._level2Select.style.cssText = "width: 100%; height: 44px; padding: 8px 12px; font-size: 15px; border: 1px solid #8a8886; border-radius: 4px; background: white; color: #323130; cursor: pointer; box-sizing: border-box;";
     this._level2Select.innerHTML = '<option value="">Select sub-category...</option>';
     this._level2Select.disabled = true;
     this._level2Select.addEventListener("change", this._onLevel2Change.bind(this));
@@ -152,6 +316,7 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
 
     this._level3Select = document.createElement("select");
     this._level3Select.className = "cascading-selector-select";
+    this._level3Select.style.cssText = "width: 100%; height: 44px; padding: 8px 12px; font-size: 15px; border: 1px solid #8a8886; border-radius: 4px; background: white; color: #323130; cursor: pointer; box-sizing: border-box;";
     this._level3Select.innerHTML = '<option value="">Select specific item...</option>';
     this._level3Select.disabled = true;
     this._level3Select.addEventListener("change", this._onLevel3Change.bind(this));
@@ -189,7 +354,8 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
 
     this._outputInput = document.createElement("input");
     this._outputInput.type = "text";
-    this._outputInput.className = "cascading-selector-input";
+    this._outputInput.className = "cascading-selector-output-text";
+    this._outputInput.style.cssText = "width: 100%; padding: 12px 16px; background: #f3f2f1; border: 1px solid #e0e0e0; border-left: 4px solid #0078d4; border-radius: 4px; color: #323130; font-size: 15px; box-sizing: border-box;";
     this._outputInput.placeholder = "Select all three levels to generate value...";
     this._outputInput.readOnly = true;
     inputWrapper.appendChild(this._outputInput);
@@ -210,7 +376,8 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
     actionsDiv.className = "cascading-selector-actions";
 
     this._resetButton = document.createElement("button");
-    this._resetButton.className = "cascading-selector-button cascading-selector-button-destructive";
+    this._resetButton.className = "cascading-selector-button cascading-selector-button-danger";
+    this._resetButton.style.cssText = "background: #da3b01; color: white; padding: 10px 16px; font-size: 14px; border: none; border-radius: 4px; cursor: pointer; font-weight: 500;";
     this._resetButton.textContent = "✕ Reset Selection";
     this._resetButton.disabled = true;
     this._resetButton.addEventListener("click", this._onReset.bind(this));

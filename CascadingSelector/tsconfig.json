@@ -17,7 +17,7 @@
     "experimentalDecorators": true
   },
   "include": [
-    "index.ts",
+    "CascadingSelector/**/*.ts",
     "generated/**/*.d.ts"
   ],
   "exclude": [
