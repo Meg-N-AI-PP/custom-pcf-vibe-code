@@ -1,5 +1,13 @@
+import { Toaster } from "@/components/ui/sonner"
+import { CascadingSelector } from "@/components/CascadingSelector"
+
 function App() {
-    return <div></div>
+  return (
+    <>
+      <CascadingSelector />
+      <Toaster position="top-center" />
+    </>
+  )
 }
 
 export default App
