@@ -1,17 +1,25 @@
 # Cascading Selector - Power Apps PCF Component
 
-A Power Apps Component Framework (PCF) control that provides a cascading three-level selector with a SelectedValue output field.
+A Power Apps Component Framework (PCF) control that provides a cascading three-level selector with a SelectedValue output field, built with **Fluent UI React components** for a professional Microsoft design experience.
 
 ## Features
 
+- **Fluent UI Design**: Built entirely with Microsoft Fluent UI React components for consistency with Power Apps
 - Three-level cascading dropdown selection (Level 1 → Level 2 → Level 3)
 - Automatically enables/disables subsequent levels based on selection
 - Combined value output in format: "Level1 / Level2 / Level3"
 - SelectedValue property for binding to Power Apps fields
-- Copy to clipboard functionality
+- Copy to clipboard functionality with visual feedback
 - Reset functionality to clear all selections
-- Visual feedback showing current selections
-- Professional UI matching Microsoft Fluent design
+- Visual feedback showing current selections with badges
+- Professional UI that looks native in Power Apps
+
+## Technologies
+
+- **Fluent UI React** (@fluentui/react) - Microsoft's official design system
+- **React 17** - Component framework
+- **TypeScript** - Type-safe development
+- **PCF Framework** - Power Apps Component Framework
 
 ## Prerequisites
 
@@ -146,20 +154,31 @@ npm run refreshTypes
 
 ```
 CascadingSelector/
-├── ControlManifest.Input.xml  # Component manifest defining properties
-├── index.ts                   # Main PCF control implementation
+├── ControlManifest.Input.xml            # Component manifest defining properties
+├── index.ts                             # Main PCF control implementation (React wrapper)
+├── CascadingSelectorComponent.tsx       # Fluent UI React component
 ├── css/
-│   └── CascadingSelector.css # Component styles
-├── generated/                 # Auto-generated type definitions
-├── package.json              # Node.js dependencies
-└── tsconfig.json             # TypeScript configuration
+│   └── CascadingSelector.css           # Minimal component styles (Fluent UI handles most)
+├── generated/                           # Auto-generated type definitions
+├── package.json                         # Node.js dependencies (includes Fluent UI)
+└── tsconfig.json                        # TypeScript configuration with JSX support
 ```
+
+## Dependencies
+
+The component uses the following key dependencies:
+
+- `@fluentui/react` - Microsoft Fluent UI React components
+- `react` and `react-dom` - React framework for building UI
+- `@types/react` and `@types/react-dom` - TypeScript definitions
+
+All dependencies are automatically installed when you run `npm install`.
 
 ## Customization
 
 ### Modifying the Hierarchy Data
 
-Edit the `hierarchyData` object in `index.ts` to change the available options:
+Edit the `hierarchyData` object in `CascadingSelectorComponent.tsx` to change the available options:
 
 ```typescript
 const hierarchyData: HierarchyData = {
@@ -171,7 +190,23 @@ const hierarchyData: HierarchyData = {
 
 ### Styling
 
-Modify `css/CascadingSelector.css` to customize the appearance. The component uses standard CSS classes that can be overridden.
+The component uses Fluent UI React components which automatically handle styling to match the Microsoft design system. Minimal custom CSS is in `css/CascadingSelector.css`. 
+
+To customize Fluent UI component styles, you can:
+1. Pass custom styles via the `styles` prop on Fluent UI components in `CascadingSelectorComponent.tsx`
+2. Override Fluent UI theme colors (see [Fluent UI theming docs](https://developer.microsoft.com/en-us/fluentui#/controls/web))
+
+### Fluent UI Components Used
+
+- **Stack** - Layout and spacing
+- **Label** - Field labels
+- **Dropdown** - Cascading select dropdowns
+- **TextField** - Read-only output display
+- **PrimaryButton** - Reset action button
+- **IconButton** - Copy to clipboard button
+- **Separator** - Visual section dividers
+- **MessageBar** - Success notifications
+- **Text** - Typography and badges
 
 ## Browser Support
 

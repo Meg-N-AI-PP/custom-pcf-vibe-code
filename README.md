@@ -1,6 +1,6 @@
 # Cascading Selector - Power Apps PCF Component
 
-A professional Power Apps Component Framework (PCF) control that provides a three-level cascading selector with hierarchical data selection.
+A professional Power Apps Component Framework (PCF) control that provides a three-level cascading selector with hierarchical data selection, **built with Microsoft Fluent UI React components** for a native Power Apps experience.
 
 ## Overview
 
@@ -23,16 +23,18 @@ The selected values are combined into a single text field (`SelectedValue`) that
 - SelectedValue property for easy Power Apps binding
 - Real-time value updates
 
-🎨 **Professional UI**
-- Microsoft Fluent-inspired design
+🎨 **Professional UI with Fluent UI**
+- Built entirely with Microsoft Fluent UI React components
+- Native Microsoft design system for consistency with Power Apps
 - Visual feedback for enabled/disabled states
 - Progress indicators and selection badges
-- Copy to clipboard functionality
+- Copy to clipboard functionality with Fluent UI icons
 
 🔄 **Built-in Controls**
 - Reset button to clear all selections
-- Visual display of current selections
+- Visual display of current selections with badges
 - Helper text for user guidance
+- Message bars for feedback
 
 ## Quick Start
 
@@ -72,21 +74,35 @@ pac pcf push --publisher-prefix dev
 
 ```
 custom-pcf-vibe-code/
-├── CascadingSelector/              # PCF Component
-│   ├── ControlManifest.Input.xml  # Component manifest
-│   ├── index.ts                   # Main component logic
+├── CascadingSelector/                       # PCF Component (Fluent UI)
+│   ├── ControlManifest.Input.xml           # Component manifest
+│   ├── index.ts                            # PCF control wrapper
+│   ├── CascadingSelectorComponent.tsx      # Fluent UI React component
 │   ├── css/
-│   │   └── CascadingSelector.css  # Component styles
-│   ├── package.json               # Component dependencies
-│   ├── tsconfig.json              # TypeScript config
-│   └── README.md                  # Component documentation
-├── src/                           # Original React demo app
+│   │   └── CascadingSelector.css           # Minimal styles (Fluent UI handles most)
+│   ├── package.json                        # Component dependencies (includes Fluent UI)
+│   ├── tsconfig.json                       # TypeScript config with JSX support
+│   └── README.md                           # Component documentation
+├── src/                                    # Original React demo app
 │   ├── components/
-│   │   └── CascadingSelector.tsx  # React version (reference)
+│   │   └── CascadingSelector.tsx           # Shadcn UI version (reference)
 │   └── ...
-├── DEPLOYMENT.md                  # Deployment guide
-└── README.md                      # This file
+├── DEPLOYMENT.md                           # Deployment guide
+└── README.md                               # This file
 ```
+
+## Technology Stack
+
+**PCF Control:**
+- **Fluent UI React** (@fluentui/react) - Microsoft's official design system
+- **React 17** - Component framework
+- **TypeScript** - Type-safe development
+- **PCF Framework** - Power Apps Component Framework
+
+**Demo Application:**
+- **Shadcn UI** - Modern component library
+- **Tailwind CSS** - Utility-first styling
+- **Vite** - Build tool
 
 ## Component Properties
 
