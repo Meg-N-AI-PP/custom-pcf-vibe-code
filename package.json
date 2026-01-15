@@ -10,7 +10,7 @@
         "build:pcf": "cd CascadingSelector && npm run build",
         "pcf:init": "cd CascadingSelector && npm init -y && npm install",
         "pcf:build": "cd CascadingSelector && pcf-scripts build",
-        "pcf:watch": "cd CascadingSelector && pcf-scripts watch",
+        "pcf:watch": "cd CascadingSelector && pcf-scripts start watch",
         "pcf:rebuild": "cd CascadingSelector && pcf-scripts rebuild",
         "lint": "eslint .",
         "optimize": "vite optimize",

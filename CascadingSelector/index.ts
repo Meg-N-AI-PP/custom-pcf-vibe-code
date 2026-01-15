@@ -428,12 +428,19 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
 
   private _onCopy(): void {
     if (this._selectedValue) {
-      navigator.clipboard.writeText(this._selectedValue).then(() => {
-        this._copyButton.innerHTML = "&#10004;"; // Check mark
-        setTimeout(() => {
-          this._copyButton.innerHTML = "&#128203;"; // Clipboard icon
-        }, 2000);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(this._selectedValue).then(() => {
+          this._copyButton.innerHTML = "&#10004;"; // Check mark
+          setTimeout(() => {
+            this._copyButton.innerHTML = "&#128203;"; // Clipboard icon
+          }, 2000);
+        }).catch((err) => {
+          console.error("Failed to copy to clipboard:", err);
+        });
+      } else {
+        // Fallback for browsers without clipboard API
+        console.warn("Clipboard API not available");
+      }
     }
   }
 }
