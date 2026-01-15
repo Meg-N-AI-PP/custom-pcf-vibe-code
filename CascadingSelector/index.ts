@@ -436,10 +436,39 @@ export class CascadingSelector implements ComponentFramework.StandardControl<IIn
           }, 2000);
         }).catch((err) => {
           console.error("Failed to copy to clipboard:", err);
+          // Show error feedback to user
+          this._copyButton.innerHTML = "&#10060;"; // X mark
+          setTimeout(() => {
+            this._copyButton.innerHTML = "&#128203;"; // Clipboard icon
+          }, 2000);
         });
       } else {
-        // Fallback for browsers without clipboard API
-        console.warn("Clipboard API not available");
+        // Fallback: create temporary textarea for copying
+        try {
+          const textarea = document.createElement("textarea");
+          textarea.value = this._selectedValue;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const successful = document.execCommand("copy");
+          document.body.removeChild(textarea);
+          
+          if (successful) {
+            this._copyButton.innerHTML = "&#10004;"; // Check mark
+            setTimeout(() => {
+              this._copyButton.innerHTML = "&#128203;"; // Clipboard icon
+            }, 2000);
+          } else {
+            console.warn("Copy command failed");
+            this._copyButton.innerHTML = "&#10060;"; // X mark
+            setTimeout(() => {
+              this._copyButton.innerHTML = "&#128203;"; // Clipboard icon
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("Fallback copy failed:", err);
+        }
       }
     }
   }
